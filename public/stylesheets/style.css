@@ -1,6 +1,6 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 a {
@@ -18,4 +18,12 @@ a i {
   font-size: 30rem;
   font-weight: bold;
   text-shadow: 0px 10px 10px rgba(0, 0, 0, 0.66);
+}
+
+.row{
+  text-align: center;
+}
+
+#login{
+  background-color:lightgray;
 }
