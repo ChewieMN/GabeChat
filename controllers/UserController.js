@@ -120,7 +120,15 @@ class UserController{
     }
 
     /* YOU NEED TO ADD COMMENTS FROM HERE ON */
-
+    
+    /**
+     * Asynchronous function that handles modification to '/update account'
+     * On success, updates account details
+     * On failure, doesn't update account details with error message
+     * Either way, sends user back to account page
+     * @param {*} request 
+     * @param {*} response 
+     */
     updateAccount =  async (request, response) => {
 
         var currentUser = AraDTUserModel.getCurrentUser();
@@ -139,6 +147,7 @@ class UserController{
                 response.render('account');
             }
         } else {
+            //if there is no current user, the 
             this.logout(request, response);
         }
 
