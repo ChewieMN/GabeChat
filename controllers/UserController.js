@@ -106,12 +106,12 @@ class UserController{
                 }).catch((error) => {
                     // Firebase registration has failed, so return Firebase errors
                     request.session.errors.register = [error.message];
-                    response.redirect('/');
+                    response.redirect('/sign-up');
                 });
         } catch(errors) {
             // Form has failed validation, so return errors
             request.session.errors.register = errors;
-            response.redirect('/');
+            response.redirect('/sign-up');
         }
     };
 
@@ -126,8 +126,6 @@ class UserController{
      * On success, updates account details
      * On failure, doesn't update account details with error message
      * Either way, sends user back to account page
-     * @param {*} request 
-     * @param {*} response 
      */
     updateAccount =  async (request, response) => {
 
@@ -136,10 +134,10 @@ class UserController{
             try{
                 await AraDTUserModel.update(request, response)
                     .then(() => {
-                        response.locals.errors.profile = ['Your details have been updated'];
+                        response.locals.errors.profile = ['Your details have been updated']; // details have been updated
                         response.render('account');
                     }).catch((error) => {
-                        response.locals.errors.profile = [error.message];
+                        response.locals.errors.profile = [error.message]; //details haven't been updated
                         response.render('account');
                     });
             } catch(errors) {
@@ -147,12 +145,18 @@ class UserController{
                 response.render('account');
             }
         } else {
-            //if there is no current user, the 
+            //if there is no current user, the code sends to logout page
             this.logout(request, response);
         }
 
     };
-    
+
+    /**
+     * Asynchronous function that handles modification to the password'
+     * On success, updates password
+     * On failure, doesn't update password with error message
+     * Either way, sends user back to account page
+     */
     updatePassword = async (request, response) => {
 
         var currentUser = AraDTUserModel.getCurrentUser();
@@ -160,10 +164,10 @@ class UserController{
             try{
                 await AraDTUserModel.updatePassword(request, response)
                     .then(() => {
-                        response.locals.errors.password = ['Your password has been updated'];
+                        response.locals.errors.password = ['Your password has been updated']; //password has been updated
                         response.render('account');
                     }).catch((error) => {
-                        response.locals.errors.password = [error.message];
+                        response.locals.errors.password = [error.message]; //password has not been updated
                         response.render('account');
                     });
             } catch(errors) {
@@ -171,6 +175,7 @@ class UserController{
                 response.render('account');
             }
         } else {
+            //if there is no current user, the code sends to logout page
             this.logout(request, response);
         }
 
@@ -183,14 +188,16 @@ class UserController{
         }
         response.render('account');
     }
-
+    /**
+     * asyncronous function that logs out the user
+     */
     logout = async (request, response) => {
         request.session.errors.general = ['You have been logged out'];
         response.locals.loggedin = false;
         request.session.destroy();
         await AraDTDatabase.firebase.auth().signOut().then(function() {
                 response.redirect('/');
-            }).catch(function(error) {
+            }).catch(function(error) { //if funtion does not work, send out error
                 response.redirect('/');
             });
     }

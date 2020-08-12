@@ -39,9 +39,10 @@ class Router{
     addBaseRoutes() {
         AraDTApp.get('/', this.index);
         AraDTApp.get('/register', this.signup);
-        signup(request, response);{
-            response.render('register');
-        }
+    }
+
+    signup(){
+        response.render('register');
     }
 
 
