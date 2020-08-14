@@ -43,6 +43,14 @@ a i {
   margin:0 auto;
 }
 
+.loginErrors{
+  padding-top: 10px;
+  width: 300px;
+  align-items: center;
+  margin:0 auto;
+  padding-bottom: 25px;
+}
+
 .loginLinks{
   width: 300px;
   margin: 0 auto;
