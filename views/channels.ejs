@@ -1,0 +1,14 @@
+<%- include('partials/header'); %> 
+<% var users = locals.channels.users %>
+<form id="channel-create-form" action="/channels/add" method="post" enctype="multipart/form-data">
+	<input type="text" class="form-control" name="name" placeholder="Display Name" value="">
+	<input type="file" class="custom-file-input" name="avatar" id="avatar-upload">
+	<% if (users) { %>
+		<% users.forEach(function(user) { %>
+			<input class="user-check-input" id="user<%= user.id %>" type="checkbox" name="users" value="<%= user.id %>">
+			<p><%= user.name %></p>
+		<% }) %>
+	<% } %>
+	<button id="update" type="submit">Create</button>
+</form>
+<%- include('partials/footer'); %>

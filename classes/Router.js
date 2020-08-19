@@ -1,5 +1,7 @@
-var UserController = require('../controllers/UserController');
+var UserController = require('../controllers/UserController'); 
+var ChannelController = require('../controllers/ChannelController');
 var createError = require('http-errors');
+const { response } = require('express');
 
 /**
  * Router class to add controller routes to Express
@@ -39,10 +41,20 @@ class Router{
     addBaseRoutes() {
         AraDTApp.get('/', this.index);
         AraDTApp.get('/register', this.signup);
+        AraDTApp.get('/channel', this.channels);
+        AraDTApp.get('/home', this.home)
     }
 
-    signup(){
+    signup(request, response, next){
         response.render('register');
+    }
+
+    channels(request, response, next){
+        response.render('channel')
+    }
+
+    home(request, response, next){
+        response.render('home')
     }
 
 
@@ -52,6 +64,7 @@ class Router{
      */
     addControllers() {
         var userController = new UserController();
+        var channelController = new ChannelController();
     }
 
     // Renders home page ./views/index.ejs

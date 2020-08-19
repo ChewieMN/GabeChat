@@ -70,7 +70,7 @@ class UserController{
             await AraDTUserModel.login(request, response)
                 .then(() => {
                     // Login successful, so redirect to account
-                    response.redirect('/account');
+                    response.redirect('/home');
                 }).catch((error) => {
                     // Firebase login has failed, so return Firebase errors
                     request.session.errors.login = [error.message];
@@ -102,7 +102,7 @@ class UserController{
             await AraDTUserModel.register(request, response)
                 .then(() => {
                     // registration successful, so redirect to account
-                    response.redirect('/account');
+                    response.redirect('/home');
                 }).catch((error) => {
                     // Firebase registration has failed, so return Firebase errors
                     request.session.errors.register = [error.message];
