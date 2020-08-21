@@ -1,5 +1,4 @@
 body {
-  padding: 50px;
   font-family: 'Roboto', sans-serif;
 }
 
@@ -29,6 +28,7 @@ a i {
 #login{
   background-color:lightgray;
   border-radius: 25px;
+  margin: 50px;
 }
 
 .loginTitle{
@@ -56,4 +56,9 @@ a i {
   margin: 0 auto;
   padding-top: 25px;
   padding-bottom: 25px;
+}
+
+.dropdown{
+  padding-left: 10px;
+  padding-right: 10px;
 }
