@@ -11,4 +11,36 @@
 	<% } %>
 	<button id="update" type="submit">Create</button>
 </form>
+<% 
+var channels = locals.channels
+var owned = ("owned" in  channels) ? channels.owned : false
+var subscribed = ("subscribed" in  channels) ? channels.subscribed : false
+%>
+<div id="owned-channels" class="user-channels">
+	<h4>Your Channels</h4>
+<% if (owned) { %>
+	<ul>
+	<% owned.forEach(function(channel) { %>
+		<li>
+			<img src="<%= channel.image %>" alt="<%= channel.name %>">
+			<a href="/channel/<%= channel.id %>/"><%= channel.name %></a>
+			<a href="/channels/delete/<%= channel.id %>/"><i class="fa fa-trash" aria-hidden="true"></i></a>
+		</li>
+	<% }) %>
+	</ul>
+<% }  %>
+</div>
+<div id="subscribed-channels" >
+	<h4>Subscribed Channels</h4>
+<% if (subscribed) { %>
+	<ul>
+	<% subscribed.forEach(function(channel) { %>
+		<li>
+			<img src="<%= channel.image %>" alt="<%= channel.name %>">
+			<a href="/channel/<%= channel.slug %>/"><%= channel.name %></a>
+		</li>
+	<% }) %>
+	</ul>
+<% }  %>
+</div>
 <%- include('partials/footer'); %>

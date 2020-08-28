@@ -43,6 +43,7 @@ class Router{
         AraDTApp.get('/register', this.signup);
         AraDTApp.get('/channel', this.channels);
         AraDTApp.get('/home', this.home)
+        AraDTApp.get('/account', this.account)
     }
 
     signup(request, response, next){
@@ -55,6 +56,10 @@ class Router{
 
     home(request, response, next){
         response.render('home')
+    }
+
+    account(request, response, next){
+        response.render('account')
     }
 
 

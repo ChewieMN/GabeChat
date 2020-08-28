@@ -62,3 +62,15 @@ a i {
   padding-left: 10px;
   padding-right: 10px;
 }
+
+.account{
+  margin-left: 30px;
+}
+
+.accountForm{
+  width: 600px;
+}
+
+.accountButton{
+  width: 300px;
+}
