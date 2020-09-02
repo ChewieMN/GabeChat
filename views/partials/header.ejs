@@ -13,7 +13,14 @@
 	<body>
 		<header id="header">
 			<nav class="navbar navbar-expand-lg navbar-gray bg-light">
-				<a class="navbar-brand" href="#">GabeChat</a>
+                <% if (locals.user.photoURL) { %>   
+                    <p class="avatar">
+						<img src="<%= locals.user.photoURL %>" alt="Avatar Image" class="avatar-image-header">
+						<%= locals.user.displayName %>
+					</p>
+				<% } else { %>
+					<p>GabeChat</p>
+                <% } %>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
