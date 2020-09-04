@@ -1,0 +1,39 @@
+<%- include('partials/header'); %> 
+<% 
+var channel = locals.channel.channel
+var messages = locals.messages
+var user = locals.user
+%> 
+			<div id="main">
+				<div class="container-fluid">
+				<div class="row">
+					<main role="main" class="col">
+						<h1><%= channel.name %></h1>
+						<div id="chat">
+						<% if (messages) { %>
+							<% messages.forEach(function(message) { %>
+							<div class="message <%=message.direction%>" data-time="<%=message.time%>">
+								<div class="user">
+									<img src="<%=message.user.image%>" alt="Image">
+									<p><%=message.user.name%></p>
+								</div>
+								<p><%=message.msg%></p>
+								<small class="text-muted time"></small>
+							</div>
+							<% }) %>
+						<% }  %>
+						</div>           
+						<div id="message">
+							<form id="message-form">
+								<textarea id="message-box" placeholder="Type your message here"></textarea>
+								<input 
+									data-user='{"uid":"<%= locals.user.uid %>","name":"<%= locals.user.displayName %>","image":"<%= locals.user.photoURL %>"}'
+									data-channel='{"uid":"<%= channel.id %>","name":"<%= channel.name %>"}'
+									type="hidden" id="chat-info">
+								<button id="send-message" type="submit">Send</button>
+							</form>
+					</main>
+				</div> <!-- end .row --> 
+				</div><!-- end .container-fluid -->
+			</div><!-- end #main -->
+<%- include('partials/footer'); %>
