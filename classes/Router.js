@@ -52,6 +52,7 @@ class Router{
      */
     addBaseRoutes() {
         AraDTApp.get('/', this.index);
+        AraDTApp.get('/home', this.home);
     }
 
 
@@ -69,6 +70,9 @@ class Router{
     // Renders home page ./views/index.ejs
     index(request, response, next) {
         response.render('index');
+    }
+    home(request, response, next) {
+        response.render('home');
     }
 
     // Adds middleware to add HTTP Error to 404 requests

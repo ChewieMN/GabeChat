@@ -13,7 +13,7 @@
 	<body>
 		<header id="header">
 			<nav class="navbar navbar-expand-lg navbar-gray bg-light">
-                <% if (locals.user.photoURL) { %>   
+                <% if (locals.user && locals.user.photoURL) { %>   
                     <p class="avatar">
 						<img src="<%= locals.user.photoURL %>" alt="Avatar Image" class="avatar-image-header">
 						<%= locals.user.displayName %>
