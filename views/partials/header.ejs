@@ -48,5 +48,24 @@
 							</div>
 					</div>
 				</div>
-				</nav>
+			</nav>
+			<div class="channelBar bg-secondary">
+				<% 
+				var channels = locals.channels
+				var owned = ("owned" in  channels) ? channels.owned : false
+				var subscribed = ("subscribed" in  channels) ? channels.subscribed : false
+				%>
+				<% if (owned) { %>
+					<ul class="list-inline">
+						<li class="list-inline-item">
+							<a class="homeButton" href="/home"><i class="fas fa-home" style="font-size: 50px;"></i></a>
+						</li>
+					<% owned.forEach(function(channel) { %>
+						<li class="list-inline-item">
+							<a href="/channel/<%= channel.id %>/"><img class="channelImage" src="<%= channel.image %>" alt="<%= channel.name %>"></a>
+						</li>
+					<% }) %>
+					</ul>
+				<% }  %>
+			</div>
 		</header>
