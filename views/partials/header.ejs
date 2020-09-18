@@ -58,7 +58,9 @@
 				<% if (owned) { %>
 					<ul class="list-inline">
 						<li class="list-inline-item">
-							<a class="homeButton" href="/home"><i class="fas fa-home" style="font-size: 50px;"></i></a>
+							<div class="homeButton">
+								<a href="/home"><i class="fas fa-home" style="font-size: 50px;"></i></a>
+							</div>
 						</li>
 					<% owned.forEach(function(channel) { %>
 						<li class="list-inline-item">

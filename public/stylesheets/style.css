@@ -85,6 +85,20 @@ a i {
   border-radius:50%;
 }
 
+.channelBar{
+  align-items: center;
+}
+
+.homeButton{
+  background-color: #DADADA;
+  display: inline-block;
+  width: 75px;
+  height: 75px;
+  object-fit:cover;
+  border-radius:50%;
+  margin: 0 auto;
+}
+
 .channelImage{
   width:75px;
   height:75px;
