@@ -87,16 +87,18 @@ a i {
 
 .channelBar{
   align-items: center;
+  height: 75px;
 }
 
 .homeButton{
   background-color: #DADADA;
-  display: inline-block;
+  display: flex;
   width: 75px;
   height: 75px;
   object-fit:cover;
   border-radius:50%;
-  margin: 0 auto;
+  align-items: center;
+  justify-content: center;
 }
 
 .channelImage{
@@ -104,6 +106,7 @@ a i {
   height:75px;
   object-fit:cover;
   border-radius:50%;
+  margin-bottom: 28px;
 }
 
 .accountButton{
