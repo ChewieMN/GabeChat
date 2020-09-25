@@ -87,7 +87,7 @@ a i {
 
 .channelBar{
   align-items: center;
-  height: 75px;
+  height: 95px;
 }
 
 .homeButton{
@@ -99,6 +99,7 @@ a i {
   border-radius:50%;
   align-items: center;
   justify-content: center;
+  margin-top: 10px;
 }
 
 .channelImage{
