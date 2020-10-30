@@ -1,59 +1,70 @@
 <%- include('partials/header'); %> 
 <% var users = locals.channels.users %>
-<form id="channel-create-form" action="/channels/add" method="post" enctype="multipart/form-data">
-	<input type="text" class="form-control" name="name" placeholder="Display Name" value="">
-	<div class="input-group">
-		<div class="custom-file">
-			<input type="file" name="avatar" class="custom-file-input" id="inputGroupFile01"
-			aria-describedby="inputGroupFileAddon01">
-			<label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+<div class="channelForm">
+	<h1>Channels</h1>
+	<form id="channel-create-form" action="/channels/add" method="post" enctype="multipart/form-data">
+		<input type="text" class="form-control" name="name" placeholder="Display Name" value="">
+		<div class="input-group">
+			<div class="custom-file">
+				<input type="file" name="avatar" class="custom-file-input" id="inputGroupFile01"
+				aria-describedby="inputGroupFileAddon01">
+				<label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+			</div>
 		</div>
+		<% if (users) { %>
+			<ul class="channelUsers">
+				<% users.forEach(function(user) { %>
+					<li class="list-inline-item">
+						<input class="user-check-input" id="user<%= user.id %>" type="checkbox" name="users" value="<%= user.id %>">
+					</li>
+					<li class="list-inline-item">
+						<img src="<%= user.image %>" class="avatar">
+					</li>
+					<li class="list-inline-item">
+						<p><%= user.name %></p>
+					</li>
+				<% }) %>
+			</ul>
+		<% } %>
+		<button id="update" type="submit">Create</button>
+	</form>
+	<% 
+	var channels = locals.channels
+	var owned = ("owned" in  channels) ? channels.owned : false
+	var subscribed = ("subscribed" in  channels) ? channels.subscribed : false
+	%>
+	<div id="owned-channels" class="userChannels">
+		<% if (owned) { %>
+			<h4>Your Channels</h4>
+			<ul>
+				<% owned.forEach(function(channel) { %>
+					<li class="list-inline-item">
+						<a href="/channel/<%= channel.id %>/"><img class="channelImage" src="<%= channel.image %>" alt="<%= channel.name %>"></a>
+					</li>
+				<% }) %>
+			</ul>
+		<% }  %>
 	</div>
-	<% if (users) { %>
-		<% users.forEach(function(user) { %>
-			<input class="user-check-input" id="user<%= user.id %>" type="checkbox" name="users" value="<%= user.id %>">
-			<p><%= user.name %></p>
-		<% }) %>
-	<% } %>
-	<button id="update" type="submit">Create</button>
-</form>
-<% 
-var channels = locals.channels
-var owned = ("owned" in  channels) ? channels.owned : false
-var subscribed = ("subscribed" in  channels) ? channels.subscribed : false
-%>
-<div id="owned-channels" class="user-channels">
-	<h4>Your Channels</h4>
-<% if (owned) { %>
-	<ul>
-	<% owned.forEach(function(channel) { %>
-		<li>
-			<a href="/channel/<%= channel.id %>/"><img class="channelImage" src="<%= channel.image %>" alt="<%= channel.name %>"></a>
-			<!--<a href="/channels/delete/<%= channel.id %>/"><i class="fa fa-cog" style="font-size:30px;"></i></a>-->
-		</li>
-	<% }) %>
-	</ul>
-<% }  %>
-</div>
-<div id="subscribed-channels" >
-	<h4>Subscribed Channels</h4>
-<% if (subscribed) { %>
-	<ul>
-	<% subscribed.forEach(function(channel) { %>
-		<li>
-			<a href="/channel/<%= channel.slug %>/"><img class="channelImage" src="<%= channel.image %>" alt="<%= channel.name %>"></a>
-		</li>
-	<% }) %>
-	</ul>
-<% }  %>
-</div>
-<div class="channelErrors">
-	<% if (locals.errors) { %>
-	<% if(locals.errors.channel) { %>
-		<% locals.errors.channel.forEach(function(error) { %>
-		<p class="alert bg-white text-dark" role="alert"><%= error %></p>
-		<% }) %>
-	<% } %>
-	<% } %>
+	<div id="subscribed-channels" class="userChannels">	
+		<% if (subscribed) { %>
+			<h4>Subscribed Channels</h4>
+			<ul>
+				<% subscribed.forEach(function(channel) { %>
+					<li class="list-inline-item">
+						<a href="/channel/<%= channel.slug %>/"><img class="channelImage" src="<%= channel.image %>" alt="<%= channel.name %>"></a>
+					</li>
+				<% }) %>
+			</ul>
+		<% }  %>
+	</div>
+	<div class="channelErrors">
+		<% if (locals.errors) { %>
+		<% if(locals.errors.channel) { %>
+			<% locals.errors.channel.forEach(function(error) { %>
+			<p class="alert bg-white text-dark" role="alert"><%= error %></p>
+			<% }) %>
+		<% } %>
+		<% } %>
+	</div>
 </div>
 <%- include('partials/footer'); %>

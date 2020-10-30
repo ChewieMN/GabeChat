@@ -110,6 +110,28 @@ a i {
   margin-bottom: 28px;
 }
 
+.channelForm{
+  margin: 30px;
+  width: 600px;
+}
+
 .accountButton{
   width: 300px;
+}
+
+.avatar{
+  width:75px;
+  height:75px;
+  object-fit:cover;
+  border-radius:50%;
+}
+
+.channelUsers{
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.userChannels{
+  margin-top: 20px;
+  margin-bottom: 20px;
 }

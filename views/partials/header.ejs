@@ -14,7 +14,7 @@
 		<header id="header">
 			<nav class="navbar navbar-expand-lg navbar-gray bg-light">
                 <% if (locals.user && locals.user.photoURL) { %>   
-                    <p class="avatar">
+                    <p class="avatar-header">
 						<img src="<%= locals.user.photoURL %>" alt="Avatar Image" class="avatar-image-header">
 						<%= locals.user.displayName %>
 					</p>
@@ -27,17 +27,7 @@
 				
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav mr-auto">
-					<li class="nav-item">
-						<a class="nav-link" href="/home">Home</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="/channels">Channel</a>
-					</li>
 					</ul>
-					<form class="form-inline my-2 my-lg-0">
-					<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-					<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-					</form>
 					<div class="dropdown">
 						<a href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 							<i class="fa fa-cog" style="font-size:75px;"></i>
@@ -58,7 +48,7 @@
 				<ul class="list-inline">
 					<li class="list-inline-item">
 						<div class="homeButton ">
-							<a href="/home" ><i class="fas fa-home" style="font-size: 50px;"></i></a>
+							<a href="/account" ><i class="fas fa-home" style="font-size: 50px;"></i></a>
 						</div>
 					</li>
 					<% if (owned) { %>

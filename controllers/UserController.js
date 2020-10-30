@@ -67,7 +67,7 @@ class UserController{
             await AraDTUserModel.login(request, response)
                 .then(() => {
                     // Login successful, so redirect to account
-                    response.redirect('/home');
+                    response.redirect('/account');
                 }).catch((error) => {
                     // Firebase login has failed, so return Firebase errors
                     request.session.errors.login = [error.message];
